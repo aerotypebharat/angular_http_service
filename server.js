@@ -16,37 +16,62 @@ console.log("Static files initialized...");
 // Create Sql Connection
 app.use(connection(mysql, {
     host     : 'localhost',
-    user     : 'cubic',
-    password : 'cubictech123',
-    database : 'cms'
+    user     : 'uibatch6',
+    password : 'password123',
+    database : 'sampledb'
 },'request'));
 
 console.log("Query Setup complete...")
 
 //collection of services.
 var services ={
-    "companies":{
+    "person":{
         "get":{
+            
             "all":{
-                "url":"/service/companies/all",
-                "query":"SELECT * FROM companytbl",
+                "url":"/service/person/all",
+                "query":"SELECT * FROM persontbl",
                 "params":[]
             },
             "active":{
-                "url":"/service/companies",
-                "query":"SELECT * FROM companytbl WHERE active = 1",
+                "url":"/service/person",
+                "query":"SELECT * FROM persontbl WHERE active = 1",
+                "params":[]
+            },
+            "inactive":{
+                "url":"/service/person/inactive",
+                "query":"SELECT * FROM persontbl WHERE active = 0",
                 "params":[]
             },
             "byId":{
-                "url":"/service/companies/:companyid",
-                "query":"SELECT * FROM companytbl where companyid = ?",
-                "params":['companyid']
+                "url":"/service/person/:personid",
+                "query":"SELECT * FROM persontbl where personid = ?",
+                "params":['personid']
             }
         },
         "post":{
-            "url":"/service/companies",
-            "query":"INSERT INTO companytbl SET ?",
+            "url":"/service/person",
+            "query":"INSERT INTO persontbl SET ?",
             "params":[]
+        },
+        "put":{
+            "url":"/service/person/:id",
+            "query":"UPDATE persontbl SET ? WHERE personid = ?",
+            "params":[]
+        },
+        "delete":{
+            "url":"/service/person/:personid",
+            "query":"DELETE FROM persontbl WHERE personid = ?",
+            "params":["personid"]
+        }
+    },
+    "company":{
+        "get":{
+            "active":{
+                "url":"/service/company",
+                "query":"select * from companytbl where active = 1",
+                "params":[]    
+            }
         },
         "put":{
             "url":"/service/companies/:id",
@@ -179,5 +204,5 @@ app.get('/', function (req, res) {
 //Launching server
 app.listen(8000, function (req,res) {
   console.log("Opening port 8000");    
-  console.log('application launched at localhost:8080');
+  console.log('application launched at localhost:8000');
 });
