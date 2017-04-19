@@ -1,0 +1,12 @@
+<div class="container">
+                <div class="row">
+                    <div class="col-md-3">First Name</div>
+                    <div class="col-md-3">Last Name</div>
+                    <div class="col-md-3">Email</div>
+                </div>
+                <div class="row" ng-repeat="person in personList track by $index">
+                    <div class="col-md-3">{{person.firstname}}</div>
+                    <div class="col-md-3">{{person.lastname}}</div>
+                    <div class="col-md-3">{{person.email}}</div>
+                </div>
+ </div>

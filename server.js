@@ -198,7 +198,7 @@ function createDeleteServices(url,query,params){
 
 //Routes
 app.get('/', function (req, res) {
-    res.redirect('/src/main/index.html');
+    res.redirect('/views/index.html');
 });
 
 //Launching server
